@@ -6,3 +6,5 @@ obj
 *.csproj
 *.sln
 .vs/woe-physics-simulation/v14/.suo
+*.suo
+.vs/woe-physics-simulation/v15
