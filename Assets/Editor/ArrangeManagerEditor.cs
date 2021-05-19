@@ -350,7 +350,10 @@ namespace GoldenLion.PhysicsSimulation {
         /// <param name="teamIndex"></param>
         private void OnApplyCustomArrange(int curAssaultIndex, int teamIndex) {
             if (_arrangeMgr != null) {
-                _arrangeMgr.ApplyCustomArrange(curAssaultIndex, teamIndex);
+                if (teamIndex == 0)
+                    _arrangeMgr.ApplyArrangeYellowTeam(curAssaultIndex, teamIndex);
+                else if(teamIndex == 1)
+                    _arrangeMgr.ApplyArrangeGreenTeam(curAssaultIndex, teamIndex);
             }
         }
         #endregion

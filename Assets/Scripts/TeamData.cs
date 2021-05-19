@@ -22,7 +22,7 @@ namespace GoldenLion.PhysicsSimulation {
         public float _drag;
     }
 
-
+    [Serializable]
     public class TeamData : ScriptableObject{
         [SerializeField]
         public bool _foldOut;

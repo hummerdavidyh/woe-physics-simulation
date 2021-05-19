@@ -508,7 +508,7 @@ namespace GoldenLion.PhysicsSimulation {
         /// </summary>
         /// <param name="assaultIdx"></param>
         /// <param name="teamIdx"></param>
-        public void ApplyCustomArrange(int assaultIdx, int teamIdx) {
+        public void ApplyArrangeYellowTeam(int assaultIdx, int teamIdx) {
 
             AssaultData curAssaultData = _assaultDatas[assaultIdx];
             if (curAssaultData == null) {
@@ -520,16 +520,54 @@ namespace GoldenLion.PhysicsSimulation {
                 throw new ArgumentNullException("Current team data is null!");
             }
 
-            List<Transform> curTeam = _yellowTeams;
-            if (teamIdx == 1)
-                curTeam = _greenTeams;
+            if (!teamData._writeBack) {
+                teamData._localPositions = new List<Vector3>();
+                teamData._localRotations = new List<Quaternion>();
 
-            teamData._writeBack = true;
-            teamData._localPositions = new List<Vector3>();
-            teamData._localRotations = new List<Quaternion>();
-            for (int i = 0; i < _greenTeams.Count; i++) {
-                teamData._localPositions.Add(curTeam[i].localPosition);
-                teamData._localRotations.Add(curTeam[i].localRotation);
+                for (int i = 0; i < _yellowTeams.Count; i++) {
+                    teamData._localPositions.Add(_yellowTeams[i].localPosition);
+                    teamData._localRotations.Add(_yellowTeams[i].localRotation);
+                }
+                teamData._writeBack = true;
+            }
+            else {
+                for (int i = 0; i < _yellowTeams.Count; i++) {
+                    teamData._localPositions[i] = _yellowTeams[i].localPosition;
+                    teamData._localRotations[i] = _yellowTeams[i].localRotation;
+                }
+            }
+            
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+
+        public void ApplyArrangeGreenTeam(int assaultIdx, int teamIdx) {
+
+            AssaultData curAssaultData = _assaultDatas[assaultIdx];
+            if (curAssaultData == null) {
+                throw new ArgumentNullException("Current assault data is null!");
+            }
+
+            TeamData teamData = curAssaultData._teamDatas[teamIdx];
+            if (teamData == null) {
+                throw new ArgumentNullException("Current team data is null!");
+            }
+
+            if (!teamData._writeBack) {
+                teamData._localPositions = new List<Vector3>();
+                teamData._localRotations = new List<Quaternion>();
+
+                for (int i = 0; i < _yellowTeams.Count; i++) {
+                    teamData._localPositions.Add(_greenTeams[i].localPosition);
+                    teamData._localRotations.Add(_greenTeams[i].localRotation);
+                }
+                teamData._writeBack = true;
+            }
+            else {
+                for (int i = 0; i < _yellowTeams.Count; i++) {
+                    teamData._localPositions[i] = _greenTeams[i].localPosition;
+                    teamData._localRotations[i] = _greenTeams[i].localRotation;
+                }
             }
 
             AssetDatabase.SaveAssets();
