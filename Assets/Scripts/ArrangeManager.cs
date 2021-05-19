@@ -129,6 +129,7 @@ namespace GoldenLion.PhysicsSimulation {
             }
 
             if (GUI.Button(new Rect(70 * _scaleW, 50 * _scaleH * 2, 120 * _scaleW, 40 * _scaleH), "Destory")) {
+                // 删除 黄队
                 _yellowTeamRoot.transform.DetachChildren();
                 for (int i = 0; i < _yellowTeams.Count; i++) {
                     Destroy(_yellowTeams[i].gameObject);
@@ -136,6 +137,7 @@ namespace GoldenLion.PhysicsSimulation {
                 Destroy(_yellowTeamRoot);
                 _yellowTeams.Clear();
 
+                // 删除 绿队
                 _greenTeamRoot.transform.DetachChildren();
                 for (int i = 0; i < _greenTeams.Count; i++) {
                     Destroy(_greenTeams[i].gameObject);
@@ -143,10 +145,14 @@ namespace GoldenLion.PhysicsSimulation {
                 Destroy(_greenTeamRoot);
                 _greenTeams.Clear();
 
+                // 激活触发器
                 var triggers = GameObject.Find("Triggers");
                 if (triggers != null) {
                     triggers.transform.Find("CubeTrigger").gameObject.SetActive(true);
                 }
+
+                // 全局配置清零
+                GlobalConfig.Instance.Clear();
             }
 
             if (GUI.Button(new Rect(70 * _scaleW, 50 * _scaleH * 3, 120 * _scaleW, 40 * _scaleH), "Save")) {

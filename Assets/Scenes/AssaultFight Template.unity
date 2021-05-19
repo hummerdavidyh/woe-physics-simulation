@@ -430,14 +430,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PrintTrace: 1
-  _activeAssaultData: 0
+  _activeAssaultData: 2
   _assaultDatas: []
   _foldouts: 
   _yellowTeamPrefab: {fileID: 3083543410644924117, guid: e97e573c61abe4e4ebe6f3f4f41bb598,
     type: 3}
   _greenTeamPrefab: {fileID: 3083543410644924117, guid: 202a93483efa72b40b3184d0b13521a1,
     type: 3}
-  _attackSpeed: 44.9
+  _attackSpeed: 13.2
 --- !u!1 &1302218665
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,4 +588,4 @@ MonoBehaviour:
   PrintTrace: 0
   _sampleFrequency: 38.7
   _animLength: 0.89
-  _sample: 0
+  _interpolationFrame: 50

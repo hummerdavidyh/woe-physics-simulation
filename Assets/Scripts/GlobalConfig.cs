@@ -5,6 +5,10 @@ using UnityEngine;
 namespace GoldenLion.PhysicsSimulation {
 
     public class GlobalConfig : MonoBehaviourSingleton<GlobalConfig> {
+        #region (Varibles) Consts
+        /// <summary> </summary>
+        public const int INVALID_FRAME_NUM = -1;
+        #endregion
 
         #region (Variables) Public
         /// <summary> </summary>
@@ -21,6 +25,8 @@ namespace GoldenLion.PhysicsSimulation {
         #region (Variables) Private
         /// <summary> </summary>
         private float _lastTime = 0f;
+        /// <summary> </summary>
+        private float _curAnimTime = 0f;
         #endregion
 
         #region (Properties)
@@ -46,12 +52,17 @@ namespace GoldenLion.PhysicsSimulation {
         protected override void SingletonStarted() {
             base.SingletonStarted();
 
-            Sample = false;
-            FrameNum = -1;
+            Clear();
         }
 
         private void Update() {
             if (Sample) {
+
+                _curAnimTime += Time.deltaTime;
+                if (_curAnimTime >= _animLength)
+                    Sample = false;
+
+
                 if (FrameNum < 0) {
                     FrameNum = 0;
                 }
@@ -59,7 +70,7 @@ namespace GoldenLion.PhysicsSimulation {
                 _lastTime += Time.deltaTime;
                 if (_lastTime >= 1f / _sampleFrequency) {
                     FrameNum++;
-                    _lastTime -= 1f / _sampleFrequency;
+                    _lastTime = 0f;
                 }
              }
         }
@@ -71,7 +82,9 @@ namespace GoldenLion.PhysicsSimulation {
         /// </summary>
         public void Clear() {
             Sample = false;
-            FrameNum = 0;
+            FrameNum = INVALID_FRAME_NUM;
+            _lastTime = 0;
+            _curAnimTime = 0;
         }
         #endregion
     }

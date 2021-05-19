@@ -17,8 +17,11 @@ namespace GoldenLion.PhysicsSimulation {
 
         #region (Methods) Unity
         // Start is called before the first frame update
-        void Start() {
+        void Start() {            
             Debug.Log("AttackCollisionSample Start()");
+
+            _teamSampleData = new TeamSampleData();
+            _lastFrameNum = GlobalConfig.Instance.FrameNum;
 
             _originalPositions = new List<Vector3>();
             _startFramePositions = new List<Vector3>();
@@ -42,8 +45,7 @@ namespace GoldenLion.PhysicsSimulation {
 
                 if (GlobalConfig.Instance.FrameNum == 0) {
                     // 获得起始帧的各个孩子的位置（相对于阵型中心点的位置）
-                    _children = ArrangeManager.Instance.GetYellowTeams();
-                    for (int i = 0; i < _children.Count; i++) {
+                      for (int i = 0; i < _children.Count; i++) {
                         var child = _children[i];
 
                         _startFramePositions.Add(child.localPosition);
@@ -60,10 +62,16 @@ namespace GoldenLion.PhysicsSimulation {
                         var child = _children[i];
                         _teamSampleData.AddPosition((i + 1), GlobalConfig.Instance._interpolationFrame,
                             child.localPosition.x, child.localPosition.y, child.localPosition.z);
+
+                        if (i == 0) {
+                            Debug.LogFormat("Attack tag: {0}, position x : {1}, y : {2}, z : {3}, frameIndex: {4}",
+                                (i + 1), child.localPosition.x, child.localPosition.y, child.localPosition.z,
+                                GlobalConfig.Instance._interpolationFrame);
+                        }
                     }
                 }
                 else {
-                    // 录入其它帧的数据
+                    // 录入后续帧的数据
                     for (int i = 0; i < _children.Count; i++) {
                         var child = _children[i];
 
@@ -71,6 +79,12 @@ namespace GoldenLion.PhysicsSimulation {
 
                         _teamSampleData.AddPosition((i + 1), GlobalConfig.Instance._interpolationFrame + GlobalConfig.Instance.FrameNum,
                             position.x, position.y, position.z);
+
+                        if (i == 0) {
+                            Debug.LogFormat("Attack tag: {0}, position x : {1}, y : {2}, z : {3}, frameIndex: {4}",
+                                (i + 1), child.localPosition.x, child.localPosition.y, child.localPosition.z,
+                                GlobalConfig.Instance._interpolationFrame + GlobalConfig.Instance.FrameNum);
+                        }
                     }
                 }
 

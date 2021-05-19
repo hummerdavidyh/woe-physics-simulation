@@ -12,14 +12,11 @@ namespace GoldenLion.PhysicsSimulation {
         /// <summary> 队列包含的对象 </summary>
         protected List<Transform> _children;
 
-        protected int _lastFrameNum = 0;
+        protected int _lastFrameNum;
 
         // Start is called before the first frame update
         void Start() {
             Debug.Log("CollsionSample Start()");
-
-            _teamSampleData = new TeamSampleData();
-            _lastFrameNum = GlobalConfig.Instance.FrameNum;
         }
 
         /// <summary>
