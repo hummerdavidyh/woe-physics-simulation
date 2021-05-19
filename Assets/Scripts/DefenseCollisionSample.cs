@@ -34,6 +34,8 @@ namespace GoldenLion.PhysicsSimulation {
 
                     _teamSampleData.AddPosition((i + 1), GlobalConfig.Instance.FrameNum + GlobalConfig.Instance._interpolationFrame,
                         position.x, position.y, position.z);
+                    _teamSampleData.AddQuaternion((i + 1), GlobalConfig.Instance._interpolationFrame + GlobalConfig.Instance.FrameNum,
+                        child.rotation);
 
                     if (i == 0) {
                         Debug.LogFormat("Defense tag: {0}, position x : {1}, y : {2}, z : {3}, frameIndex: {4}",

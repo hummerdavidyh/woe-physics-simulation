@@ -190,6 +190,8 @@ namespace GoldenLion.PhysicsSimulation {
 
     [Serializable]
     public class TeamSampleData {
+        private const float UNITY2COCOS_POSITION_SCALE = 100f;
+
         #region 
         [SerializeField]
         private TransAnimation action;
@@ -212,7 +214,10 @@ namespace GoldenLion.PhysicsSimulation {
         /// <param name="frameIndex"></param>
         /// <param name="position"></param>
         public void AddPosition(int tag, int frameIndex, float x, float y, float z) {
-            action.Add(tag, FrameType.Position3D, frameIndex, x, y, z, 0f);
+            float cocosX = x * UNITY2COCOS_POSITION_SCALE;
+            float cocosY = y * UNITY2COCOS_POSITION_SCALE;
+            float cocosZ = z * UNITY2COCOS_POSITION_SCALE;
+            action.Add(tag, FrameType.Position3D, frameIndex, cocosX, cocosY, cocosZ, 0f);
         }
 
         /// <summary>
