@@ -189,15 +189,13 @@ namespace GoldenLion.PhysicsSimulation {
 
             if (_yellowTeamRoot == null) {
                 _yellowTeamRoot = new GameObject("Yellow Team");
-                _yellowTeamRoot.AddComponent<CollsionSample>();
-                _yellowTeamRoot.GetComponent<CollsionSample>().enabled = false;
+                _yellowTeamRoot.AddComponent<AttackCollisionSample>();
                 _yellowTeamRoot.transform.position = Vector3.zero;
             }
 
             if (_greenTeamRoot == null) {
                 _greenTeamRoot = new GameObject("Green Team");
-                _greenTeamRoot.AddComponent<CollsionSample>();
-                _greenTeamRoot.GetComponent<CollsionSample>().enabled = false;
+                _greenTeamRoot.AddComponent<DefenseCollisionSample>();
                 _greenTeamRoot.transform.position = Vector3.zero;
             }
 

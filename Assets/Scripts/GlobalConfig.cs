@@ -18,12 +18,12 @@ namespace GoldenLion.PhysicsSimulation {
         public int _interpolationFrame = 50;
         #endregion
 
-        #region 
+        #region (Variables) Private
         /// <summary> </summary>
         private float _lastTime = 0f;
         #endregion
 
-        #region 
+        #region (Properties)
         /// <summary>
         /// 
         /// </summary>
@@ -41,7 +41,6 @@ namespace GoldenLion.PhysicsSimulation {
         }
 
         #endregion
-
 
         #region (Methods) Unity
         protected override void SingletonStarted() {

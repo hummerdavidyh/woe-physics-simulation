@@ -19,9 +19,7 @@ namespace GoldenLion.PhysicsSimulation {
             Debug.Log("OnTriggerEnter");
             gameObject.SetActive(false);
 
-
-            GameObject.Find("Yellow Team").GetComponent<CollsionSample>().enabled = true;
-            GameObject.Find("Green Team").GetComponent<CollsionSample>().enabled = true;
+            GlobalConfig.Instance.Sample = true;           
         }
     }
 }
