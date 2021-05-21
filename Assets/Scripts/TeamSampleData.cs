@@ -213,11 +213,35 @@ namespace GoldenLion.PhysicsSimulation {
         /// <param name="tag"></param>
         /// <param name="frameIndex"></param>
         /// <param name="position"></param>
-        public void AddPosition(int tag, int frameIndex, float x, float y, float z) {
+        public void AddPositionForCocos(int tag, int frameIndex, float x, float y, float z) {
             float cocosX = x * UNITY2COCOS_POSITION_SCALE;
             float cocosY = y * UNITY2COCOS_POSITION_SCALE;
             float cocosZ = z * UNITY2COCOS_POSITION_SCALE;
             action.Add(tag, FrameType.Position3D, frameIndex, cocosX, cocosY, cocosZ, 0f);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="frameIndex"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        public void AddPosition(int tag, int frameIndex, float x, float y, float z)
+        {
+            action.Add(tag, FrameType.Position3D, frameIndex, x, y, z, 0f);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="frameIndex"></param>
+        /// <param name="quat"></param>
+        public void AddQuaternionForCocos(int tag, int frameIndex, Quaternion quat)
+        {
+            action.Add(tag, FrameType.Quaternion, frameIndex, quat.x, quat.y, quat.z, -quat.w);
         }
 
         /// <summary>

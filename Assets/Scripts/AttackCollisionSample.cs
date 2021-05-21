@@ -57,11 +57,21 @@ namespace GoldenLion.PhysicsSimulation {
                         _differentPositions.Add(diff);
                     }
 
-                    // 录入第一帧的数据
+                    for (int i = 0; i < _children.Count; i++)
+                    {
+                        var child = _children[i];
+
+                        // 添加标识帧数据
+                        _teamSampleData.AddPosition((i + 1), 1, 0f, 0f, 999.0f);
+                    }
+
+                        // 录入第一帧的数据
                     for (int i = 0; i < _children.Count; i++) {
                         var child = _children[i];
-                        
-                        _teamSampleData.AddPosition((i + 1), GlobalConfig.Instance._interpolationFrame,
+
+                        // 添加标识帧数据
+                       
+                        _teamSampleData.AddPositionForCocos((i + 1), GlobalConfig.Instance._interpolationFrame,
                             child.localPosition.x, child.localPosition.y, child.localPosition.z);
                         _teamSampleData.AddQuaternion((i + 1), GlobalConfig.Instance._interpolationFrame,
                             child.rotation);
