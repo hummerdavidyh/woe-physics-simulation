@@ -73,8 +73,13 @@ namespace GoldenLion.PhysicsSimulation {
                        
                         _teamSampleData.AddPositionForCocos((i + 1), GlobalConfig.Instance._interpolationFrame,
                             child.localPosition.x, child.localPosition.y, child.localPosition.z);
-                        _teamSampleData.AddQuaternion((i + 1), GlobalConfig.Instance._interpolationFrame,
-                            child.rotation);
+
+                        if (GlobalConfig.Instance._isExportRotation)
+                        {
+                            _teamSampleData.AddQuaternion((i + 1), GlobalConfig.Instance._interpolationFrame,
+                                child.rotation);
+                        }
+
 
                         if (i == 0) {
                             Debug.LogFormat("Attack tag: {0}, position x : {1}, y : {2}, z : {3}, frameIndex: {4}",
@@ -92,8 +97,12 @@ namespace GoldenLion.PhysicsSimulation {
 
                         _teamSampleData.AddPosition((i + 1), GlobalConfig.Instance._interpolationFrame + GlobalConfig.Instance.FrameNum,
                             position.x, position.y, position.z);
-                        _teamSampleData.AddQuaternion((i + 1), GlobalConfig.Instance._interpolationFrame + GlobalConfig.Instance.FrameNum,
-                            child.rotation);
+
+                        if (GlobalConfig.Instance._isExportRotation)
+                        {
+                            _teamSampleData.AddQuaternion((i + 1), GlobalConfig.Instance._interpolationFrame + GlobalConfig.Instance.FrameNum,
+                                child.rotation);
+                        }
 
                         if (i == 0) {
                             Debug.LogFormat("Attack tag: {0}, position x : {1}, y : {2}, z : {3}, frameIndex: {4}",

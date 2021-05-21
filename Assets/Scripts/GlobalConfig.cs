@@ -20,6 +20,9 @@ namespace GoldenLion.PhysicsSimulation {
         /// <summary> </summary>
         [Range(1, 200)]
         public int _interpolationFrame = 50;
+
+        public bool _isExportRotation = true;
+
         #endregion
 
         #region (Variables) Private

@@ -48,8 +48,12 @@ namespace GoldenLion.PhysicsSimulation {
 
                     _teamSampleData.AddPositionForCocos((i + 1), GlobalConfig.Instance.FrameNum + GlobalConfig.Instance._interpolationFrame,
                         position.x, position.y, position.z);
-                    _teamSampleData.AddQuaternion((i + 1), GlobalConfig.Instance._interpolationFrame + GlobalConfig.Instance.FrameNum,
-                        child.rotation);
+
+                    if (GlobalConfig.Instance._isExportRotation)
+                    {
+                        _teamSampleData.AddQuaternion((i + 1), GlobalConfig.Instance._interpolationFrame + GlobalConfig.Instance.FrameNum,
+                            child.rotation);
+                    }
 
                     if (i == 0)
                     {
