@@ -70,17 +70,17 @@ namespace GoldenLion.PhysicsSimulation {
                         var child = _children[i];
 
                         // 添加标识帧数据
-                       
+                        Vector3 position = child.localPosition - _differentPositions[i];
+
                         _teamSampleData.AddPositionForCocos((i + 1), GlobalConfig.Instance._interpolationFrame,
-                            child.localPosition.x, child.localPosition.y, child.localPosition.z);
+                            position.x, position.y, position.z);
 
                         if (GlobalConfig.Instance._isExportRotation)
                         {
                             _teamSampleData.AddQuaternion((i + 1), GlobalConfig.Instance._interpolationFrame,
                                 child.rotation);
                         }
-
-
+                        
                         if (i == 0) {
                             Debug.LogFormat("Attack tag: {0}, position x : {1}, y : {2}, z : {3}, frameIndex: {4}",
                                 (i + 1), child.localPosition.x, child.localPosition.y, child.localPosition.z,
@@ -95,7 +95,7 @@ namespace GoldenLion.PhysicsSimulation {
 
                         Vector3 position = child.localPosition - _differentPositions[i];
 
-                        _teamSampleData.AddPosition((i + 1), GlobalConfig.Instance._interpolationFrame + GlobalConfig.Instance.FrameNum,
+                        _teamSampleData.AddPositionForCocos((i + 1), GlobalConfig.Instance._interpolationFrame + GlobalConfig.Instance.FrameNum,
                             position.x, position.y, position.z);
 
                         if (GlobalConfig.Instance._isExportRotation)
