@@ -32,6 +32,9 @@ namespace GoldenLion.PhysicsSimulation {
                 var child = _children[i];
 
                 _originalPositions.Add(child.localPosition);
+
+                PrintDebugInfo("Attack tag: {0}, original Position x : {1}, y : {2}, z : {3}",
+                  (i + 1), child.localPosition.x, child.localPosition.y, child.localPosition.z);
             }
         }
 
@@ -49,6 +52,9 @@ namespace GoldenLion.PhysicsSimulation {
                         var child = _children[i];
 
                         _startFramePositions.Add(child.localPosition);
+
+                        PrintDebugInfo("Attack tag: {0}, startFrame Position x : {1}, y : {2}, z : {3}",
+                            (i + 1), child.localPosition.x, child.localPosition.y, child.localPosition.z);
                     }
 
                     // 做差值
@@ -62,7 +68,7 @@ namespace GoldenLion.PhysicsSimulation {
                         var child = _children[i];
 
                         // 添加标识帧数据
-                        _teamSampleData.AddPosition((i + 1), 1, 0f, 0f, 999.0f);
+                        _teamSampleData.AddPosition((i + 1), 1, 0f, 0f, 0f, 999.0f);
                     }
 
                         // 录入第一帧的数据
@@ -71,6 +77,20 @@ namespace GoldenLion.PhysicsSimulation {
 
                         // 添加标识帧数据
                         Vector3 position = child.localPosition - _differentPositions[i];
+                        if (i == 0 && GlobalConfig.Instance._debugAttackTeam)
+                        {
+                            PrintDebugInfo("Attack tag: {0}, child localPosition x : {1}, y : {2}, z : {3}, frameIndex: {4}",
+                                (i + 1), child.localPosition.x, child.localPosition.y, child.localPosition.z,
+                                GlobalConfig.Instance._interpolationFrame);
+
+                            PrintDebugInfo("Attack tag: {0}, differentPositions x : {1}, y : {2}, z : {3}, frameIndex: {4}",
+                                (i + 1), _differentPositions[i].x, _differentPositions[i].y, _differentPositions[i].z,
+                                GlobalConfig.Instance._interpolationFrame);
+
+                            PrintDebugInfo("Attack tag: {0}, position x : {1}, y : {2}, z : {3}, frameIndex: {4}",
+                                (i + 1), position.x, position.y, position.z,
+                                GlobalConfig.Instance._interpolationFrame);
+                        }
 
                         _teamSampleData.AddPositionForCocos((i + 1), GlobalConfig.Instance._interpolationFrame,
                             position.x, position.y, position.z);
@@ -81,11 +101,11 @@ namespace GoldenLion.PhysicsSimulation {
                                 child.rotation);
                         }
                         
-                        if (i == 0) {
-                            Debug.LogFormat("Attack tag: {0}, position x : {1}, y : {2}, z : {3}, frameIndex: {4}",
-                                (i + 1), child.localPosition.x, child.localPosition.y, child.localPosition.z,
-                                GlobalConfig.Instance._interpolationFrame);
-                        }
+                        //if (i == 0) {
+                        //    Debug.LogFormat("Attack tag: {0}, position x : {1}, y : {2}, z : {3}, frameIndex: {4}",
+                        //        (i + 1), child.localPosition.x, child.localPosition.y, child.localPosition.z,
+                        //        GlobalConfig.Instance._interpolationFrame);
+                        //}
                     }
                 }
                 else {
@@ -104,8 +124,8 @@ namespace GoldenLion.PhysicsSimulation {
                                 child.rotation);
                         }
 
-                        if (i == 0) {
-                            Debug.LogFormat("Attack tag: {0}, position x : {1}, y : {2}, z : {3}, frameIndex: {4}",
+                        if (i == 0 ) {
+                            PrintDebugInfo("Attack tag: {0}, position x : {1}, y : {2}, z : {3}, frameIndex: {4}",
                                 (i + 1), child.localPosition.x, child.localPosition.y, child.localPosition.z,
                                 GlobalConfig.Instance._interpolationFrame + GlobalConfig.Instance.FrameNum);
                         }
@@ -116,5 +136,15 @@ namespace GoldenLion.PhysicsSimulation {
             }
         }
         #endregion
+
+
+        private void PrintDebugInfo(string format, params object[] args) {
+
+            if (!GlobalConfig.Instance._debugAttackTeam) {
+                return;
+            }
+
+            Debug.LogFormat(format, args);
+        }
     }
 }

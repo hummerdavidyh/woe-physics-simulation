@@ -20,8 +20,13 @@ namespace GoldenLion.PhysicsSimulation {
         /// <summary> </summary>
         [Range(1, 200)]
         public int _interpolationFrame = 50;
-
+        /// <summary> </summary>
         public bool _isExportRotation = true;
+
+        /// <summary> </summary>
+        public bool _debugAttackTeam = true;
+        /// <summary> </summary>
+        public bool _debugDefenceTeam = true;
 
         #endregion
 
