@@ -13,6 +13,7 @@ namespace GoldenLion.PhysicsSimulation {
     }
 
     public class AssaultData : ScriptableObject  {
+        #region (Variables) const
         [NonSerialized]
         public const int DEFAULT_TEAMS_NUM = 2;
         [NonSerialized]
@@ -27,13 +28,17 @@ namespace GoldenLion.PhysicsSimulation {
         public const string ASSET_PATH = "Assets/Resources/DatabaseAssault";
         [NonSerialized]
         public const string ASSET_NAME = "defaultAssault";
+        #endregion
 
+        #region 
         [SerializeField]
         public List<TeamType> _teamTypes;
         [SerializeField]
         public List<TeamData> _teamDatas;
         [SerializeField]
         public List<bool> _foldouts;
+        #endregion
+
 
         [MenuItem("GoldLion/Assets/AssaultData")]
         static void CreateAssetInstance() {

@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -7,25 +7,23 @@ using UnityEngine;
 
 namespace GoldenLion.PhysicsSimulation {
 
-    public class AssaultArrangeManager : MonoBehaviourSingleton<AssaultArrangeManager> {
+    public class ExplodeArrangeManager : MonoBehaviourSingleton<ExplodeArrangeManager> {
         #region (Variables) Datas
         /// <summary>  </summary>        
-        public int _activeIndexAssaultData;
+        public int _activeIndexExplodeData;
 
         /// <summary>  </summary>
-        public List<AssaultData> _assaultDatas = new List<AssaultData>();
+        public List<ExplodeData> _explodeDatas = new List<ExplodeData>();
         /// <summary>  </summary>
         [HideInInspector()]
         public List<bool> _foldouts = new List<bool>();
         #endregion
-
+        
         #region (Varibles) Prefabs
-        /// <summary>  </summary>
-        public GameObject _yellowTeamPrefab;
         /// <summary>  </summary>
         public GameObject _greenTeamPrefab;
         #endregion
-        
+
         #region (Varibles) Attck
         [Range(1, 100)]
         public float _attackSpeed;
@@ -33,18 +31,14 @@ namespace GoldenLion.PhysicsSimulation {
 
         #region (Varibles) Teams
         /// <summary> </summary>
-        private GameObject _yellowTeamRoot;
-        /// <summary> </summary>
         private GameObject _greenTeamRoot;
-        /// <summary> </summary>
-        private List<Transform> _yellowTeams = new List<Transform>();
         /// <summary> </summary>
         private List<Transform> _greenTeams = new List<Transform>();
         #endregion
 
         #region (varibles)
-        private float _scaleW = 1.0f; //å®½åº¦ç¼©æ”¾æ¯”
-        private float _scaleH = 1.0f; //é«˜åº¦ç¼©æ”¾æ¯”
+        private float _scaleW = 1.0f; //¿í¶ÈËõ·Å±È
+        private float _scaleH = 1.0f; //¸ß¶ÈËõ·Å±È
         #endregion
 
         #region (Unity Methods) 
@@ -54,7 +48,7 @@ namespace GoldenLion.PhysicsSimulation {
         protected override void SingletonStarted() {
             base.SingletonStarted();
 
-            string[] files = Directory.GetFiles(AssaultData.ASSET_PATH);
+            string[] files = Directory.GetFiles(ExplodeData.ASSET_PATH);
             foreach (var file in files) {
                 string fileName = AssetUtils.GetFileName(file);
                 if (fileName.Contains(".meta")) {
@@ -62,16 +56,16 @@ namespace GoldenLion.PhysicsSimulation {
                 }
 
                 fileName = AssetUtils.RemoveFileExtension(fileName);
-                var data = AssetUtils.GetScriptableObject<AssaultData>(
-                    AssaultData.ASSET_PATH, fileName, false, false);
+                var data = AssetUtils.GetScriptableObject<ExplodeData>(
+                    ExplodeData.ASSET_PATH, fileName, false, false);
                 if (data != null) {
-                    _assaultDatas.Add(data);
+                    _explodeDatas.Add(data);
                 }
             }
 
-            for (int i = 0; i < _assaultDatas.Count; i++) {
-                AssaultData data = _assaultDatas[i];
-                if (_activeIndexAssaultData == i) {
+            for (int i = 0; i < _explodeDatas.Count; i++) {
+                ExplodeData data = _explodeDatas[i];
+                if (_activeIndexExplodeData == i) {
                     _foldouts.Add(false);
                 }
                 else {
@@ -84,8 +78,8 @@ namespace GoldenLion.PhysicsSimulation {
         /// 
         /// </summary>
         void Update() {
-            _scaleW = (float)Screen.width / 800;     //è®¡ç®—å®½åº¦ç¼©æ”¾æ¯”
-            _scaleH = (float)Screen.height / 480;    //è®¡ç®—é«˜åº¦ç¼©æ”¾æ¯”
+            _scaleW = (float)Screen.width / 800;     //¼ÆËã¿í¶ÈËõ·Å±È
+            _scaleH = (float)Screen.height / 480;    //¼ÆËã¸ß¶ÈËõ·Å±È
         }
 
         /// <summary>
@@ -95,49 +89,23 @@ namespace GoldenLion.PhysicsSimulation {
             int oldFontSize = GUI.skin.button.fontSize;
             GUI.skin.button.fontSize = (int)(25 * _scaleW);
 
-            if (_yellowTeamRoot == null || _greenTeamRoot == null) {
+            if (_greenTeamRoot == null) {
                 if (GUI.Button(new Rect(70 * _scaleW, 50 * _scaleH, 120 * _scaleW, 40 * _scaleH), "Create")) {
-                    InitializeBuild(CurrentAssaultIndex());
+                    InitializeBuild(CurrentExplodeIndex());
                 }
 
                 return;
             }
-            
+
 
             if (GUI.Button(new Rect(70 * _scaleW, 50 * _scaleH, 120 * _scaleW, 40 * _scaleH), "Attack")) {
 
-                int assaultIndex = CurrentAssaultIndex();
-                AssaultData curData = _assaultDatas[assaultIndex];
 
-                Vector3 direction = Vector3.zero;
-                if (curData._teamTypes[0] == TeamType.Attack && curData._teamTypes[1] == TeamType.Defense) {
-                    direction = (_greenTeamRoot.transform.position - _yellowTeamRoot.transform.position).normalized;
-                    Debug.Log("direction 1" + direction.x + direction.y + direction.z);
-
-                    foreach (var item in _yellowTeams) {
-                        item.GetComponent<Rigidbody>().velocity = direction * _attackSpeed;
-                    }
-                }
-                else if (curData._teamTypes[0] == TeamType.Defense && curData._teamTypes[1] == TeamType.Attack) {
-                    direction = (_yellowTeamRoot.transform.position - _greenTeamRoot.transform.position).normalized;
-                    Debug.Log("direction 2" + direction.x + direction.y + direction.z);
-
-                    foreach (var item in _greenTeams) {
-                        item.GetComponent<Rigidbody>().velocity = direction * _attackSpeed;
-                    }
-                }
             }
 
             if (GUI.Button(new Rect(70 * _scaleW, 50 * _scaleH * 2, 120 * _scaleW, 40 * _scaleH), "Destory")) {
-                // åˆ é™¤ é»„é˜Ÿ
-                _yellowTeamRoot.transform.DetachChildren();
-                for (int i = 0; i < _yellowTeams.Count; i++) {
-                    Destroy(_yellowTeams[i].gameObject);
-                }
-                Destroy(_yellowTeamRoot);
-                _yellowTeams.Clear();
 
-                // åˆ é™¤ ç»¿é˜Ÿ
+                // É¾³ý ÂÌ¶Ó
                 _greenTeamRoot.transform.DetachChildren();
                 for (int i = 0; i < _greenTeams.Count; i++) {
                     Destroy(_greenTeams[i].gameObject);
@@ -145,20 +113,20 @@ namespace GoldenLion.PhysicsSimulation {
                 Destroy(_greenTeamRoot);
                 _greenTeams.Clear();
 
-                // æ¿€æ´»è§¦å‘å™¨
+                // ¼¤»î´¥·¢Æ÷
                 var triggers = GameObject.Find("Triggers");
                 if (triggers != null) {
                     triggers.transform.Find("CubeTrigger").gameObject.SetActive(true);
                 }
 
-                // å…¨å±€é…ç½®æ¸…é›¶
+                // È«¾ÖÅäÖÃÇåÁã
                 GlobalConfig.Instance.Clear();
             }
 
             if (GUI.Button(new Rect(70 * _scaleW, 50 * _scaleH * 3, 120 * _scaleW, 40 * _scaleH), "Save")) {
 
                 string fileName = EditorUtility.SaveFilePanel("Save To Json File", "", "", "");
-                string fileNameAttack = fileName + "_attack.json";                
+                string fileNameAttack = fileName + "_attack.json";
                 GameObject.Find("Yellow Team").GetComponent<CollsionSample>().SaveToFile(fileNameAttack);
                 string fileNameDefense = fileName + "_defense.json";
                 GameObject.Find("Green Team").GetComponent<CollsionSample>().SaveToFile(fileNameDefense);
@@ -169,34 +137,25 @@ namespace GoldenLion.PhysicsSimulation {
         }
         #endregion
 
+
         #region (Methods) Initializations
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public int CurrentAssaultIndex() {
-            return _activeIndexAssaultData % _assaultDatas.Count;
+        public int CurrentExplodeIndex() {
+            return _activeIndexExplodeData % _explodeDatas.Count;
         }
-  
+
 
         /// <summary>
         /// /
         /// </summary>
         /// <param name="assaultIdx"></param>
-        public void InitializeBuild(int assaultIdx) {
+        public void InitializeBuild(int dataIdx) {
             
-            if (_yellowTeamPrefab == null) {
-                throw new ArgumentNullException("Yellow team prefab is null!");
-            }
-
             if (_greenTeamPrefab == null) {
                 throw new ArgumentNullException("Yellow team prefab is null!");
-            }
-
-            if (_yellowTeamRoot == null) {
-                _yellowTeamRoot = new GameObject("Yellow Team");
-                _yellowTeamRoot.AddComponent<AssaultAttackCollisionSample>();
-                _yellowTeamRoot.transform.position = Vector3.zero;
             }
 
             if (_greenTeamRoot == null) {
@@ -205,161 +164,18 @@ namespace GoldenLion.PhysicsSimulation {
                 _greenTeamRoot.transform.position = Vector3.zero;
             }
 
-            AssaultData curAssaultData = _assaultDatas[assaultIdx];
-            if (curAssaultData == null) {
+            ExplodeData curExplodeData = _explodeDatas[dataIdx];
+            if (curExplodeData == null) {
                 throw new ArgumentNullException("Current assault data is null!");
             }
 
-            TeamData yellowTeamData = curAssaultData._teamDatas[0];
-            if (yellowTeamData._writeBack) {
-                InitializeYellowTeam(yellowTeamData);
-            }
-            else {
-                InitializeDefaultYellowTeam(yellowTeamData);
-            }
-
-            TeamData greenTeamData = curAssaultData._teamDatas[1];
+            TeamData greenTeamData = curExplodeData._teamData;
             if (greenTeamData._writeBack) {
                 InitializeGreenTeam(greenTeamData);
             }
             else {
                 InitializeDefaultGreenTeam(greenTeamData);
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="teamData"></param>
-        private void InitializeDefaultYellowTeam(TeamData teamData) {
-            // Check
-            if (teamData._total <= 0) {
-                throw new ArgumentException("Total must be greater than 0");
-            }
-            if (teamData._row <= 0) {
-                throw new ArgumentException("Row must be greater than 0");
-            }
-            if (teamData._total < teamData._row) {
-                throw new ArgumentException("The total must be greater than the number of rows");
-            }
-
-            // Calculate Column
-            int column = teamData._total / teamData._row;
-            if (teamData._total % teamData._row != 0) {
-                column += 1;
-            }
-
-            // Calculate Position
-            float rowStartPos = -(teamData._spanRow * (column - 1) / 2);
-            float colStartPos = (teamData._spanColumn * (teamData._row - 1) / 2);
-
-            int count = 0;
-
-            for (int rowIdx = 0; rowIdx < teamData._row; rowIdx++) {
-                for (int columnIdx = 0; columnIdx < column; columnIdx++) {
-                    if (count >= teamData._total)
-                        break;
-
-                    var x = rowStartPos + (columnIdx * teamData._spanRow);
-                    var z = colStartPos - (rowIdx * teamData._spanColumn);
-                    var newObj = Instantiate(
-                        _yellowTeamPrefab, new Vector3(x, 0f, z), Quaternion.identity, _yellowTeamRoot.transform);
-                    newObj.name = string.Format("[{0}][{1}]", rowIdx, columnIdx);
-
-                    // collider center
-                    if (newObj.GetComponent<Collider>() is BoxCollider) {
-                        newObj.GetComponent<BoxCollider>().center = teamData._colliders[rowIdx]._centre;
-                    }
-                    else {
-                        newObj.GetComponent<CapsuleCollider>().center = teamData._colliders[rowIdx]._centre;
-                    }
-
-                    // collider size
-                    if (newObj.GetComponent<Collider>() is BoxCollider) {
-                        newObj.GetComponent<BoxCollider>().size = teamData._colliders[rowIdx]._size;
-                    }
-                    else {
-                        newObj.GetComponent<CapsuleCollider>().radius = teamData._colliders[rowIdx]._size.x;
-                        newObj.GetComponent<CapsuleCollider>().height = teamData._colliders[rowIdx]._size.y;
-                    }
-
-                    // rigid mass
-                    newObj.GetComponent<Rigidbody>().mass = teamData._rigids[rowIdx]._mass;
-
-                    // rigid drag
-                    newObj.GetComponent<Rigidbody>().drag = teamData._rigids[rowIdx]._drag;
-
-                    _yellowTeams.Add(newObj.transform);
-                }
-            }
-
-            _yellowTeamRoot.transform.position = teamData._worldPosition;
-            SetGoLayers(_yellowTeamRoot, LayerMask.NameToLayer("YellowTeam"));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="teamData"></param>
-        private void InitializeYellowTeam(TeamData teamData) {
-            // Check
-            if (teamData._total <= 0) {
-                throw new ArgumentException("Total must be greater than 0");
-            }
-            if (teamData._row <= 0) {
-                throw new ArgumentException("Row must be greater than 0");
-            }
-            if (teamData._total < teamData._row) {
-                throw new ArgumentException("The total must be greater than the number of rows");
-            }
-
-            // Calculate Column
-            int column = teamData._total / teamData._row;
-            if (teamData._total % teamData._row != 0) {
-                column += 1;
-            }
-
-            if (!teamData._writeBack) {
-                return;
-            }
-
-            for (int i = 0; i < teamData._localPositions.Count; i++) {
-                Vector3 pos = teamData._localPositions[i];
-                Quaternion quater = teamData._localRotations[i];
-                var newObj = Instantiate(
-                    _yellowTeamPrefab, pos, quater, _yellowTeamRoot.transform);
-                newObj.name = string.Format("[{0}][{1}]", i / column, i % column);
-
-                int rowIdx = i / column;
-
-                // collider center
-                if (newObj.GetComponent<Collider>() is BoxCollider) {
-                    newObj.GetComponent<BoxCollider>().center = teamData._colliders[rowIdx]._centre;
-                }
-                else {
-                    newObj.GetComponent<CapsuleCollider>().center = teamData._colliders[rowIdx]._centre;
-                }
-
-                // collider size
-                if (newObj.GetComponent<Collider>() is BoxCollider) {
-                    newObj.GetComponent<BoxCollider>().size = teamData._colliders[rowIdx]._size;
-                }
-                else {
-                    newObj.GetComponent<CapsuleCollider>().radius = teamData._colliders[rowIdx]._size.x;
-                    newObj.GetComponent<CapsuleCollider>().height = teamData._colliders[rowIdx]._size.y;
-                }
-
-                // rigid mass
-                newObj.GetComponent<Rigidbody>().mass = teamData._rigids[rowIdx]._mass;
-
-                // rigid drag
-                newObj.GetComponent<Rigidbody>().drag = teamData._rigids[rowIdx]._drag;
-
-                _yellowTeams.Add(newObj.transform);
-            }
-
-            _yellowTeamRoot.transform.position = teamData._worldPosition;
-            SetGoLayers(_yellowTeamRoot, LayerMask.NameToLayer("YellowTeam"));
         }
 
         /// <summary>
@@ -502,49 +318,16 @@ namespace GoldenLion.PhysicsSimulation {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="assaultIdx"></param>
+        /// <param name="explodeIdx"></param>
         /// <param name="teamIdx"></param>
-        public void ApplyArrangeYellowTeam(int assaultIdx, int teamIdx) {
+        public void ApplyArrangeGreenTeam(int explodeIdx, int teamIdx) {
 
-            AssaultData curAssaultData = _assaultDatas[assaultIdx];
-            if (curAssaultData == null) {
+            ExplodeData curExplodeData = _explodeDatas[explodeIdx];
+            if (curExplodeData == null) {
                 throw new ArgumentNullException("Current assault data is null!");
             }
 
-            TeamData teamData = curAssaultData._teamDatas[teamIdx];
-            if (teamData == null) {
-                throw new ArgumentNullException("Current team data is null!");
-            }
-
-            if (!teamData._writeBack) {
-                teamData._localPositions = new List<Vector3>();
-                teamData._localRotations = new List<Quaternion>();
-
-                for (int i = 0; i < _yellowTeams.Count; i++) {
-                    teamData._localPositions.Add(_yellowTeams[i].localPosition);
-                    teamData._localRotations.Add(_yellowTeams[i].localRotation);
-                }
-                teamData._writeBack = true;
-            }
-            else {
-                for (int i = 0; i < _yellowTeams.Count; i++) {
-                    teamData._localPositions[i] = _yellowTeams[i].localPosition;
-                    teamData._localRotations[i] = _yellowTeams[i].localRotation;
-                }
-            }
-            
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-        }
-
-        public void ApplyArrangeGreenTeam(int assaultIdx, int teamIdx) {
-
-            AssaultData curAssaultData = _assaultDatas[assaultIdx];
-            if (curAssaultData == null) {
-                throw new ArgumentNullException("Current assault data is null!");
-            }
-
-            TeamData teamData = curAssaultData._teamDatas[teamIdx];
+            TeamData teamData = curExplodeData._teamData;
             if (teamData == null) {
                 throw new ArgumentNullException("Current team data is null!");
             }
@@ -575,19 +358,12 @@ namespace GoldenLion.PhysicsSimulation {
         /// </summary>
         /// <param name="teamIdx"></param>
         /// <param name="rowIdex"></param>
-        public void ApplyCustomMass(int teamIdx, int rowIdex, float mass) {
-            List<Transform> teamTrans;
-            if (teamIdx == 0) {
-                teamTrans = _yellowTeams;
-            }
-            else {
-                teamTrans = _greenTeams;
-            }
+        public void ApplyCustomMass(int rowIdex, float mass) {
 
-            int assaultIdx = CurrentAssaultIndex();
-            var assaultData = _assaultDatas[assaultIdx];
+            int dataIdx = CurrentExplodeIndex();
+            var explodeData = _explodeDatas[dataIdx];
 
-            var teamData = assaultData._teamDatas[teamIdx];
+            var teamData = explodeData._teamData;
 
             // Calculate Column
             int column = teamData._total / teamData._row;
@@ -596,7 +372,7 @@ namespace GoldenLion.PhysicsSimulation {
             }
 
             for (int i = rowIdex * column; i < rowIdex * column + column; i++) {
-                teamTrans[i].GetComponent<Rigidbody>().mass = mass;
+                _greenTeams[i].GetComponent<Rigidbody>().mass = mass;
             }
 
             AssetDatabase.SaveAssets();
@@ -604,18 +380,10 @@ namespace GoldenLion.PhysicsSimulation {
         }
 
         public void ApplyCustomDrag(int teamIdx, int rowIdex, float drag) {
-            List<Transform> teamTrans;
-            if (teamIdx == 0) {
-                teamTrans = _yellowTeams;
-            }
-            else {
-                teamTrans = _greenTeams;
-            }
+            int dataIdx = CurrentExplodeIndex();
+            var explodeData = _explodeDatas[dataIdx];
 
-            int assaultIdx = CurrentAssaultIndex();
-            var assaultData = _assaultDatas[assaultIdx];
-
-            var teamData = assaultData._teamDatas[teamIdx];
+            var teamData = explodeData._teamData;
 
             // Calculate Column
             int column = teamData._total / teamData._row;
@@ -624,7 +392,7 @@ namespace GoldenLion.PhysicsSimulation {
             }
 
             for (int i = rowIdex * column; i < rowIdex * column + column; i++) {
-                teamTrans[i].GetComponent<Rigidbody>().drag = drag;
+                _greenTeams[i].GetComponent<Rigidbody>().drag = drag;
             }
 
             AssetDatabase.SaveAssets();
@@ -632,18 +400,10 @@ namespace GoldenLion.PhysicsSimulation {
         }
 
         public void ApplyCustomColliderCenter(int teamIdx, int rowIdex, Vector3 center) {
-            List<Transform> teamTrans;
-            if (teamIdx == 0) {
-                teamTrans = _yellowTeams;
-            }
-            else {
-                teamTrans = _greenTeams;
-            }
+            int dataIdx = CurrentExplodeIndex();
+            var explodeData = _explodeDatas[dataIdx];
 
-            int assaultIdx = CurrentAssaultIndex();
-            var assaultData = _assaultDatas[assaultIdx];
-
-            var teamData = assaultData._teamDatas[teamIdx];
+            var teamData = explodeData._teamData;
 
             // Calculate Column
             int column = teamData._total / teamData._row;
@@ -652,11 +412,11 @@ namespace GoldenLion.PhysicsSimulation {
             }
 
             for (int i = rowIdex * column; i < rowIdex * column + column; i++) {
-                if (teamTrans[i].GetComponent<Collider>() is BoxCollider) {
-                    teamTrans[i].GetComponent<BoxCollider>().center = center;
+                if (_greenTeams[i].GetComponent<Collider>() is BoxCollider) {
+                    _greenTeams[i].GetComponent<BoxCollider>().center = center;
                 }
                 else {
-                    teamTrans[i].GetComponent<CapsuleCollider>().center = center;
+                    _greenTeams[i].GetComponent<CapsuleCollider>().center = center;
                 }
             }
 
@@ -671,18 +431,10 @@ namespace GoldenLion.PhysicsSimulation {
         /// <param name="rowIdex"></param>
         /// <param name="center"></param>
         public void ApplyCustomColliderSize(int teamIdx, int rowIdex, Vector3 size) {
-            List<Transform> teamTrans;
-            if (teamIdx == 0) {
-                teamTrans = _yellowTeams;
-            }
-            else {
-                teamTrans = _greenTeams;
-            }
+            int dataIdx = CurrentExplodeIndex();
+            var explodeData = _explodeDatas[dataIdx];
 
-            int assaultIdx = CurrentAssaultIndex();
-            var assaultData = _assaultDatas[assaultIdx];
-
-            var teamData = assaultData._teamDatas[teamIdx];
+            var teamData = explodeData._teamData;
 
             // Calculate Column
             int column = teamData._total / teamData._row;
@@ -691,12 +443,12 @@ namespace GoldenLion.PhysicsSimulation {
             }
 
             for (int i = rowIdex * column; i < rowIdex * column + column; i++) {
-                if (teamTrans[i].GetComponent<Collider>() is BoxCollider) {
-                    teamTrans[i].GetComponent<BoxCollider>().size = size;
+                if (_greenTeams[i].GetComponent<Collider>() is BoxCollider) {
+                    _greenTeams[i].GetComponent<BoxCollider>().size = size;
                 }
                 else {
-                    teamTrans[i].GetComponent<CapsuleCollider>().radius = size.x;
-                    teamTrans[i].GetComponent<CapsuleCollider>().height = size.y;
+                    _greenTeams[i].GetComponent<CapsuleCollider>().radius = size.x;
+                    _greenTeams[i].GetComponent<CapsuleCollider>().height = size.y;
                 }
             }
 
@@ -720,10 +472,6 @@ namespace GoldenLion.PhysicsSimulation {
         #endregion
 
         #region 
-        public List<Transform> GetYellowTeams() {
-            return _yellowTeams;
-        }
-
         public List<Transform> GetGreenTeams() {
             return _greenTeams;
         }
