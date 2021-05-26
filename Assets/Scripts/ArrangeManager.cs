@@ -251,7 +251,7 @@ namespace GoldenLion.PhysicsSimulation {
 
             // Calculate Position
             float rowStartPos = -(teamData._spanRow * (column - 1) / 2);
-            float colStartPos = -(teamData._spanColumn * (teamData._row - 1) / 2);
+            float colStartPos = (teamData._spanColumn * (teamData._row - 1) / 2);
 
             int count = 0;
 
@@ -261,7 +261,7 @@ namespace GoldenLion.PhysicsSimulation {
                         break;
 
                     var x = rowStartPos + (columnIdx * teamData._spanRow);
-                    var z = colStartPos + (rowIdx * teamData._spanColumn);
+                    var z = colStartPos - (rowIdx * teamData._spanColumn);
                     var newObj = Instantiate(
                         _yellowTeamPrefab, new Vector3(x, 0f, z), Quaternion.identity, _yellowTeamRoot.transform);
                     newObj.name = string.Format("[{0}][{1}]", rowIdx, columnIdx);
@@ -387,7 +387,7 @@ namespace GoldenLion.PhysicsSimulation {
             }
 
             // Calculate Position
-            float rowStartPos = -(teamData._spanRow * (column - 1) / 2);
+            float rowStartPos = (teamData._spanRow * (column - 1) / 2);
             float colStartPos = -(teamData._spanColumn * (teamData._row - 1) / 2);
 
             int count = 0;
@@ -396,7 +396,7 @@ namespace GoldenLion.PhysicsSimulation {
                     if (count >= teamData._total)
                         break;
 
-                    var x = rowStartPos + (columnIdx * teamData._spanRow);
+                    var x = rowStartPos - (columnIdx * teamData._spanRow);
                     var z = colStartPos + (rowIdx * teamData._spanColumn);
                     var newObj = Instantiate(
                         _greenTeamPrefab, new Vector3(x, 0f, z), Quaternion.identity, _greenTeamRoot.transform);
@@ -431,7 +431,6 @@ namespace GoldenLion.PhysicsSimulation {
             }
 
             _greenTeamRoot.transform.position = teamData._worldPosition;
-            _greenTeamRoot.transform.Rotate(Vector3.up, teamData._worldRotation.y);
             SetGoLayers(_greenTeamRoot, LayerMask.NameToLayer("GreenTeam"));
         }
 
