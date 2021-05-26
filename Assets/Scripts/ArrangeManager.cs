@@ -294,7 +294,6 @@ namespace GoldenLion.PhysicsSimulation {
             }
 
             _yellowTeamRoot.transform.position = teamData._worldPosition;
-            _yellowTeamRoot.transform.Rotate(Vector3.up, teamData._worldRotation.y);
             SetGoLayers(_yellowTeamRoot, LayerMask.NameToLayer("YellowTeam"));
         }
 
@@ -360,7 +359,6 @@ namespace GoldenLion.PhysicsSimulation {
             }
 
             _yellowTeamRoot.transform.position = teamData._worldPosition;
-            _yellowTeamRoot.transform.Rotate(Vector3.up, teamData._worldRotation.y);
             SetGoLayers(_yellowTeamRoot, LayerMask.NameToLayer("YellowTeam"));
         }
 
@@ -496,7 +494,6 @@ namespace GoldenLion.PhysicsSimulation {
             }
 
             _greenTeamRoot.transform.position = teamData._worldPosition;
-            _greenTeamRoot.transform.Rotate(Vector3.up, teamData._worldRotation.y);
             SetGoLayers(_greenTeamRoot, LayerMask.NameToLayer("GreenTeam"));
         }
         #endregion
