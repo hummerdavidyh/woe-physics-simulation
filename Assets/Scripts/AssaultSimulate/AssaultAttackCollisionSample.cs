@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GoldenLion.PhysicsSimulation {
 
-    public class AttackCollisionSample : CollsionSample {
+    public class AssaultAttackCollisionSample : CollsionSample {
 
         #region (Variables) Private
         /// <summary> </summary>
@@ -18,7 +18,7 @@ namespace GoldenLion.PhysicsSimulation {
         #region (Methods) Unity
         // Start is called before the first frame update
         void Start() {            
-            Debug.Log("AttackCollisionSample Start()");
+            Debug.Log("AssaultAttackCollisionSample Start()");
 
             _teamSampleData = new TeamSampleData();
             _lastFrameNum = GlobalConfig.Instance.FrameNum;
@@ -27,7 +27,7 @@ namespace GoldenLion.PhysicsSimulation {
             _startFramePositions = new List<Vector3>();
             _differentPositions = new List<Vector3>();
 
-            _children = ArrangeManager.Instance.GetYellowTeams();
+            _children = AssaultArrangeManager.Instance.GetYellowTeams();
             for (int i = 0; i < _children.Count; i++) {
                 var child = _children[i];
 

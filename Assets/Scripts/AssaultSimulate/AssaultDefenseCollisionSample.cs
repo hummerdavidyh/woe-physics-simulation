@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace GoldenLion.PhysicsSimulation {
-    public class DefenseCollisionSample : CollsionSample {
+    public class AssaultDefenseCollisionSample : CollsionSample {
 
         // Start is called before the first frame update
         void Start() {
-            Debug.Log("DefenseCollisionSample Start()");
+            Debug.Log("AssaultDefenseCollisionSample Start()");
 
             _teamSampleData = new TeamSampleData();
             _lastFrameNum = GlobalConfig.Instance.FrameNum;
 
-            _children = ArrangeManager.Instance.GetGreenTeams();
+            _children = AssaultArrangeManager.Instance.GetGreenTeams();
             for (int i = 0; i < _children.Count; i++) {
                 var child = _children[i];
             }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace GoldenLion.PhysicsSimulation {
 
-    public class ArrangeManager : MonoBehaviourSingleton<ArrangeManager> {
+    public class AssaultArrangeManager : MonoBehaviourSingleton<AssaultArrangeManager> {
         #region (Variables) Datas
         /// <summary>  </summary>        
         public int _activeAssaultData;
@@ -195,13 +195,13 @@ namespace GoldenLion.PhysicsSimulation {
 
             if (_yellowTeamRoot == null) {
                 _yellowTeamRoot = new GameObject("Yellow Team");
-                _yellowTeamRoot.AddComponent<AttackCollisionSample>();
+                _yellowTeamRoot.AddComponent<AssaultAttackCollisionSample>();
                 _yellowTeamRoot.transform.position = Vector3.zero;
             }
 
             if (_greenTeamRoot == null) {
                 _greenTeamRoot = new GameObject("Green Team");
-                _greenTeamRoot.AddComponent<DefenseCollisionSample>();
+                _greenTeamRoot.AddComponent<AssaultDefenseCollisionSample>();
                 _greenTeamRoot.transform.position = Vector3.zero;
             }
 

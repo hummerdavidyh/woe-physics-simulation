@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace GoldenLion.PhysicsSimulation {
 
-   [CustomEditor(typeof(ArrangeManager))]
-    public class ArrangeManagerEditor : Editor {
+   [CustomEditor(typeof(AssaultArrangeManager))]
+    public class AssaultArrangeManagerEditor : Editor {
 
         #region (Variables) Lables
         /// <summary>  </summary>
@@ -43,14 +43,14 @@ namespace GoldenLion.PhysicsSimulation {
 
         #region 
         /// <summary>  </summary>
-        ArrangeManager _arrangeMgr;
+        AssaultArrangeManager _arrangeMgr;
         #endregion
 
         #region Constructor
         /// <summary>
         /// 
         /// </summary>
-        public ArrangeManagerEditor() {
+        public AssaultArrangeManagerEditor() {
             _totalLabel = new GUIContent("总数");
             _rowLabel = new GUIContent("行数");
             _spanRowLabel = new GUIContent("行间距");
@@ -77,7 +77,7 @@ namespace GoldenLion.PhysicsSimulation {
         /// </summary>
         private void OnEnable() {
             if (_arrangeMgr == null) {
-                _arrangeMgr = target as ArrangeManager;
+                _arrangeMgr = target as AssaultArrangeManager;
             }
         }
 
