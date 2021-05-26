@@ -28,8 +28,8 @@ namespace GoldenLion.PhysicsSimulation {
         #region (Variables) 
         [SerializeField]
         public TeamData _teamData;
-        [SerializeField]
-        public List<bool> _foldouts;
+        //[SerializeField]
+        //public List<bool> _foldouts;
         #endregion
 
 
@@ -43,11 +43,7 @@ namespace GoldenLion.PhysicsSimulation {
             string FileName = string.Format("{0}/{1}.asset", ASSET_PATH, ASSET_NAME);
             AssetDatabase.CreateAsset(inst, FileName);
 
-            inst._teamData = new TeamData();
-            inst._foldouts = new List<bool>();
-            inst._foldouts.Add(false);
-
-            var teamData = CreateInstance<TeamData>();
+            TeamData teamData = CreateInstance<TeamData>();
             teamData.name = "DefenceTeam";
             teamData._total = DEFAULT_TEAM_TOTAL;
             teamData._row = DEFAULT_TEAM_ROW_NUM;
@@ -72,7 +68,9 @@ namespace GoldenLion.PhysicsSimulation {
                 teamData._rigids.Add(data);
             }
 
-            AssetDatabase.AddObjectToAsset(teamData, FileName);
+            inst._teamData = teamData;
+
+            AssetDatabase.AddObjectToAsset(inst._teamData, FileName);
 
             inst._teamData._worldPosition = new Vector3(0f, 0f, 0f);
             inst._teamData._worldRotation = new Vector3(0f, 0f, 0f);

@@ -10,7 +10,7 @@ namespace GoldenLion.PhysicsSimulation {
     public class ExplodeArrangeManager : MonoBehaviourSingleton<ExplodeArrangeManager> {
         #region (Variables) Datas
         /// <summary>  </summary>        
-        public int _activeIndexExplodeData;
+        public int _activeExplodeDataIndex;
 
         /// <summary>  </summary>
         public List<ExplodeData> _explodeDatas = new List<ExplodeData>();
@@ -65,7 +65,7 @@ namespace GoldenLion.PhysicsSimulation {
 
             for (int i = 0; i < _explodeDatas.Count; i++) {
                 ExplodeData data = _explodeDatas[i];
-                if (_activeIndexExplodeData == i) {
+                if (_activeExplodeDataIndex == i) {
                     _foldouts.Add(false);
                 }
                 else {
@@ -144,7 +144,7 @@ namespace GoldenLion.PhysicsSimulation {
         /// </summary>
         /// <returns></returns>
         public int CurrentExplodeIndex() {
-            return _activeIndexExplodeData % _explodeDatas.Count;
+            return _activeExplodeDataIndex % _explodeDatas.Count;
         }
 
 
