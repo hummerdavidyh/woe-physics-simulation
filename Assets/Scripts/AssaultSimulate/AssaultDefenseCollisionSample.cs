@@ -45,7 +45,6 @@ namespace GoldenLion.PhysicsSimulation {
                     var child = _children[i];
 
                     Vector3 position = child.localPosition;
-                    position *= -1f;
 
                     _teamSampleData.AddPositionForCocos((i + 1), GlobalConfig.Instance.FrameNum + GlobalConfig.Instance._interpolationFrame,
                         position.x, position.y, position.z);
