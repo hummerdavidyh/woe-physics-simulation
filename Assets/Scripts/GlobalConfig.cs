@@ -64,9 +64,13 @@ namespace GoldenLion.PhysicsSimulation {
         }
 
         private void Update() {
+
+        }
+
+        private void FixedUpdate() {
             if (Sample) {
 
-                _curAnimTime += Time.deltaTime;
+                _curAnimTime += Time.fixedDeltaTime;
                 if (_curAnimTime >= _animLength)
                     Sample = false;
 
@@ -74,13 +78,16 @@ namespace GoldenLion.PhysicsSimulation {
                 if (FrameNum < 0) {
                     FrameNum = 0;
                 }
-
-                _lastTime += Time.deltaTime;
-                if (_lastTime >= 1f / _sampleFrequency) {
+                else {
                     FrameNum++;
-                    _lastTime = 0f;
                 }
-             }
+
+                //_lastTime += Time.deltaTime;
+                //if (_lastTime >= 1f / _sampleFrequency) {
+                //    FrameNum++;
+                //    _lastTime = 0f;
+                //}
+            }
         }
         #endregion
 
@@ -91,8 +98,8 @@ namespace GoldenLion.PhysicsSimulation {
         public void Clear() {
             Sample = false;
             FrameNum = INVALID_FRAME_NUM;
-            _lastTime = 0;
-            _curAnimTime = 0;
+            _lastTime = 0f;
+            _curAnimTime = 0f;
         }
         #endregion
     }
