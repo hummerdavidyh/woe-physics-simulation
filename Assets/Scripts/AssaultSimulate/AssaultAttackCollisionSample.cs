@@ -68,7 +68,7 @@ namespace GoldenLion.PhysicsSimulation {
                         var child = _children[i];
 
                         // 添加标识帧数据
-                        _teamSampleData.AddPosition((i + 1), 1, 0f, 0f, 0f, 999.0f);
+                        _teamSampleData.AddPosition((i + 1), 1, 0f, 0f, 0f, 1000f + (int)GlobalConfig.Instance._easeType);
 
                         Quaternion quat = new Quaternion(0f, 0f, 0f, 999f);
                         _teamSampleData.AddQuaternion((i + 1), 1, quat);

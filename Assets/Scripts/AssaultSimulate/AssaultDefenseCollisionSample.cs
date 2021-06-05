@@ -33,7 +33,7 @@ namespace GoldenLion.PhysicsSimulation {
                     {
                         var child = _children[i];
 
-                        _teamSampleData.AddPosition((i + 1), 1, 0f, 0f, 0f, 999.0f);
+                        _teamSampleData.AddPosition((i + 1), 1, 0f, 0f, 0f, 1000f);
 
                         Quaternion quat = new Quaternion(0f, 0f, 0f, 999f);
                         _teamSampleData.AddQuaternion((i + 1), 1, quat);
