@@ -121,10 +121,8 @@ namespace GoldenLion.PhysicsSimulation {
             if (GUI.Button(new Rect(70 * _scaleW, 50 * _scaleH * 3, 120 * _scaleW, 40 * _scaleH), "Save")) {
 
                 string fileName = EditorUtility.SaveFilePanel("Save To Json File", "", "", "");
-                string fileNameAttack = fileName + "_attack.json";
-                GameObject.Find("Yellow Team").GetComponent<CollsionSample>().SaveToFile(fileNameAttack);
                 string fileNameDefense = fileName + "_defense.json";
-                GameObject.Find("Green Team").GetComponent<CollsionSample>().SaveToFile(fileNameDefense);
+                _defensiveTeamRoot.GetComponent<DefenseCollisionSample>().SaveToFile(fileNameDefense);
             }
 
 
@@ -143,7 +141,7 @@ namespace GoldenLion.PhysicsSimulation {
 
             if (_defensiveTeamRoot == null) {
                 _defensiveTeamRoot = new GameObject("Defense Team (Green Team)").transform;
-                //_defensiveTeamRoot.gameObject.AddComponent<AssaultDefenseCollisionSample>();
+                _defensiveTeamRoot.gameObject.AddComponent<DefenseCollisionSample>();
                 _defensiveTeamRoot.transform.position = Vector3.zero;
             }
 

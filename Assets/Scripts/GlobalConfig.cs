@@ -124,17 +124,15 @@ namespace GoldenLion.PhysicsSimulation {
 
 
                 if (FrameNum < 0) {
-                    FrameNum = 0;
+                    FrameNum = 0;                   
                 }
                 else {
-                    FrameNum++;
+                    _lastTime += Time.deltaTime;
+                    while (_lastTime >= 1f / _sampleFrequency) {
+                        FrameNum++;
+                        _lastTime -= 1f / _sampleFrequency;
+                    }
                 }
-
-                //_lastTime += Time.deltaTime;
-                //if (_lastTime >= 1f / _sampleFrequency) {
-                //    FrameNum++;
-                //    _lastTime = 0f;
-                //}
             }
         }
         #endregion

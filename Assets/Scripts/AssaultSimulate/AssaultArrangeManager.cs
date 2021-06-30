@@ -159,9 +159,9 @@ namespace GoldenLion.PhysicsSimulation {
 
                 string fileName = EditorUtility.SaveFilePanel("Save To Json File", "", "", "");
                 string fileNameAttack = fileName + "_attack.json";                
-                GameObject.Find("Yellow Team").GetComponent<CollsionSample>().SaveToFile(fileNameAttack);
+                _yellowTeamRoot.GetComponent<CollsionSample>().SaveToFile(fileNameAttack);
                 string fileNameDefense = fileName + "_defense.json";
-                GameObject.Find("Green Team").GetComponent<CollsionSample>().SaveToFile(fileNameDefense);
+                _greenTeamRoot.GetComponent<CollsionSample>().SaveToFile(fileNameDefense);
             }
 
 
