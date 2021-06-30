@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6166392635383483915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfef67d0c6ce5148b789ef6d81c67fc, type: 3}
+  m_Name: DefenceTeam
+  m_EditorClassIdentifier: 
+  _foldOut: 0
+  _worldPosition: {x: 0, y: 0, z: 0}
+  _worldRotation: {x: 0, y: 0, z: 0}
+  _total: 50
+  _row: 5
+  _spanRow: 1
+  _spanColumn: 1
+  _colliders:
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
+    _foldOut: 0
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
+    _foldOut: 0
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
+    _foldOut: 0
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
+    _foldOut: 0
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
+    _foldOut: 0
+  _rigids:
+  - _mass: 15
+    _drag: 0.5
+  - _mass: 15
+    _drag: 0.5
+  - _mass: 15
+    _drag: 0.5
+  - _mass: 15
+    _drag: 0.5
+  - _mass: 15
+    _drag: 0.5
+  _writeBack: 0
+  _localPositions: []
+  _localRotations: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9768ce71f47ee8e4f8838aeab3d32bdd, type: 3}
+  m_Name: Explode 1
+  m_EditorClassIdentifier: 
+  _teamData: {fileID: -6166392635383483915}

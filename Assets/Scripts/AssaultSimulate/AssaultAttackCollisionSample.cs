@@ -27,7 +27,14 @@ namespace GoldenLion.PhysicsSimulation {
             _startFramePositions = new List<Vector3>();
             _differentPositions = new List<Vector3>();
 
-            _children = AssaultArrangeManager.Instance.GetYellowTeams();
+            if (_children == null) {
+                _children = new List<Transform>();
+            }
+            var rigidBodys = GetComponentsInChildren<Rigidbody>();
+            foreach (var rigidBody in rigidBodys) {
+                _children.Add(rigidBody.gameObject.transform);
+            }
+            
             for (int i = 0; i < _children.Count; i++) {
                 var child = _children[i];
 

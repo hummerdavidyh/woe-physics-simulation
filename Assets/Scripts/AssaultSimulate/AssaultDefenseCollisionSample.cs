@@ -12,9 +12,12 @@ namespace GoldenLion.PhysicsSimulation {
             _teamSampleData = new TeamSampleData();
             _lastFrameNum = GlobalConfig.Instance.FrameNum;
 
-            _children = AssaultArrangeManager.Instance.GetGreenTeams();
-            for (int i = 0; i < _children.Count; i++) {
-                var child = _children[i];
+            if (_children == null) {
+                _children = new List<Transform>();
+            }
+            var rigidBodys = GetComponentsInChildren<Rigidbody>();
+            foreach (var rigidBody in rigidBodys) {
+                _children.Add(rigidBody.gameObject.transform);
             }
         }
 

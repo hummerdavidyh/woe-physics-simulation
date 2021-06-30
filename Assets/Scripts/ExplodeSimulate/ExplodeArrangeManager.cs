@@ -137,7 +137,6 @@ namespace GoldenLion.PhysicsSimulation {
         }
         #endregion
 
-
         #region (Methods) Initializations
         /// <summary>
         /// 
