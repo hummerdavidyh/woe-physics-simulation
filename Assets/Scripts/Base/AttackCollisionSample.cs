@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GoldenLion.PhysicsSimulation {
 
-    public class AssaultAttackCollisionSample : CollsionSample {
+    public class AttackCollisionSample : CollsionSample {
 
         #region (Variables) Private
         /// <summary> </summary>

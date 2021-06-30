@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace GoldenLion.PhysicsSimulation {
-    public class AssaultDefenseCollisionSample : CollsionSample {
+    public class DefenseCollisionSample : CollsionSample {
 
         // Start is called before the first frame update
         void Start() {

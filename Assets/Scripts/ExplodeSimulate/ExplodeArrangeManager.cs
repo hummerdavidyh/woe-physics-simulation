@@ -159,7 +159,7 @@ namespace GoldenLion.PhysicsSimulation {
 
             if (_greenTeamRoot == null) {
                 _greenTeamRoot = new GameObject("Green Team");
-                _greenTeamRoot.AddComponent<AssaultDefenseCollisionSample>();
+                _greenTeamRoot.AddComponent<DefenseCollisionSample>();
                 _greenTeamRoot.transform.position = Vector3.zero;
             }
 
