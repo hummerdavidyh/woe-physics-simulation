@@ -13,7 +13,7 @@ namespace GoldenLion.PhysicsSimulation {
     /// </summary>
     public class KnockUpData : ScriptableObject {
 
-        #region (Variables) const
+        #region (Const Fields)
         [NonSerialized]
         public const int DEFAULT_TEAM_TOTAL = 50;
         [NonSerialized]
@@ -28,16 +28,20 @@ namespace GoldenLion.PhysicsSimulation {
         public const string ASSET_NAME = "defaultAssault";
         #endregion
 
-        #region 
+        #region (Fields) Data
+        /// <summary> / </summary>
         [SerializeField]
-        public TeamType _teamType;
+        public TeamData _defenseTeamData;
+
+        /// <summary> / </summary>
         [SerializeField]
-        public TeamData _teamData;
-
-
+        public Vector3 _attackPosition;
+        /// <summary> / </summary>
+        [SerializeField]
+        public Vector3 _attackRotation;
         #endregion
 
-
+        #region (Methods)
         [MenuItem("GoldLion/Assets/KnockUpData")]
         static void CreateAssetInstance() {
             if (!Directory.Exists(ASSET_PATH)) {
@@ -47,9 +51,6 @@ namespace GoldenLion.PhysicsSimulation {
             KnockUpData inst = CreateInstance<KnockUpData>();
             string FileName = string.Format("{0}/{1}.asset", ASSET_PATH, ASSET_NAME);
             AssetDatabase.CreateAsset(inst, FileName);
-
-            // 队伍类型
-            inst._teamType = TeamType.Defense;
 
             // 队伍数据
             var teamData = CreateInstance<TeamData>();
@@ -75,10 +76,10 @@ namespace GoldenLion.PhysicsSimulation {
 
                 teamData._rigids.Add(data);
             }
-            teamData._worldPosition = new Vector3(0f, 0f, 16f);
-            teamData._worldRotation = new Vector3(0f, 180f, 0f);
+            teamData._worldPosition = new Vector3(0f, 0f, 0f);
+            teamData._worldRotation = new Vector3(0f, 0f, 0f);
             AssetDatabase.AddObjectToAsset(teamData, FileName);
-            inst._teamData = teamData;
+            inst._defenseTeamData = teamData;
 
             AssetDatabase.SaveAssets();
             AssetDatabase.ImportAsset(FileName);
@@ -87,8 +88,10 @@ namespace GoldenLion.PhysicsSimulation {
 
         private void OnEnable() {
             Debug.Log(name + " ScriptableObject OnEnable!");
-
-            TeamData teamData = _teamData;
+            if (_defenseTeamData == null) {
+                return;
+            }
+            TeamData teamData = _defenseTeamData;
 
             // 修正_colliders的数量以匹配row
             if (teamData._row < teamData._colliders.Count) {
@@ -124,5 +127,6 @@ namespace GoldenLion.PhysicsSimulation {
                 }
             }
         }
+        #endregion
     }
 }

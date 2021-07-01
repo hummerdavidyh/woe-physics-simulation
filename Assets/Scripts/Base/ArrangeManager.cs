@@ -116,11 +116,11 @@ namespace GoldenLion.PhysicsSimulation {
         /// </summary>
         public virtual void InitializeBuild() {
             if (_attackTeamPrefab == null) {
-                throw new ArgumentNullException("Yellow team prefab is null!");
+                throw new ArgumentNullException("Attack team prefab is null!");
             }
 
             if (_defenseTeamPrefab == null) {
-                throw new ArgumentNullException("Yellow team prefab is null!");
+                throw new ArgumentNullException("Defense team prefab is null!");
             }
 
             if (_attackTeamRoot == null) {

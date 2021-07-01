@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 11072429}
   - component: {fileID: 11072432}
   m_Layer: 10
-  m_Name: Cube
+  m_Name: CubeTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,12 +150,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11072427}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -4}
   m_LocalScale: {x: 10, y: 2, z: 0.1}
   m_Children: []
-  m_Father: {fileID: 234179966}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &11072429
 BoxCollider:
@@ -281,37 +281,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &234179965
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 234179966}
-  m_Layer: 0
-  m_Name: Trigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &234179966
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234179965}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 11072428}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &697109188
 GameObject:
@@ -518,14 +487,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d479a7af9785124eb3747fb2a6786fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrintTrace: 0
+  _attackTeamPrefab: {fileID: 0}
+  _defenseTeamPrefab: {fileID: 3083543410644822773, guid: 6f8e27c4d2b9bc147a0783bad27d27fd,
+    type: 3}
+  _attackSpeed: 100
+  _trigger: {fileID: 11072427}
   _database: {fileID: 11400000, guid: 1806141219c31a940bf4140ca761814d, type: 2}
   _currentDataIndex: 0
   _attackColliders: {fileID: 11400000, guid: 9244bb7923fc17847ba7f453e7261465, type: 2}
   _currentAttackColliderIndex: 3
-  _defensiveTeamPrefab: {fileID: 3083543410644924117, guid: 6f8e27c4d2b9bc147a0783bad27d27fd,
-    type: 3}
-  _attackSpeed: 100
 --- !u!4 &1014804236
 Transform:
   m_ObjectHideFlags: 0
@@ -538,7 +508,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1899912217
 GameObject:
