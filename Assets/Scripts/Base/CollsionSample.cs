@@ -8,7 +8,7 @@ namespace GoldenLion.PhysicsSimulation {
 
     public class CollsionSample : MonoBehaviour {
         /// <summary> 队列采样数据 </summary>
-        protected TeamSampleData _teamSampleData;
+        protected TeamExportData _teamSampleData;
         /// <summary> 队列包含的对象 </summary>
         protected List<Transform> _children;
 

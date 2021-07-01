@@ -9,7 +9,7 @@ namespace GoldenLion.PhysicsSimulation {
         void Start() {
             Debug.Log("AssaultDefenseCollisionSample Start()");
 
-            _teamSampleData = new TeamSampleData();
+            _teamSampleData = new TeamExportData();
             _lastFrameNum = GlobalConfig.Instance.FrameNum;
 
             if (_children == null) {

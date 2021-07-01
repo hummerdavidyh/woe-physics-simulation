@@ -189,7 +189,7 @@ namespace GoldenLion.PhysicsSimulation {
     }
 
     [Serializable]
-    public class TeamSampleData {
+    public class TeamExportData {
         private const float UNITY2COCOS_POSITION_SCALE = 100f;
 
         #region 
@@ -201,7 +201,7 @@ namespace GoldenLion.PhysicsSimulation {
         /// <summary>
         /// 
         /// </summary>
-        public TeamSampleData() {
+        public TeamExportData() {
             action = new TransAnimation();
         }
         #endregion

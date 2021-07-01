@@ -25,9 +25,6 @@ namespace GoldenLion.PhysicsSimulation {
     [Serializable]
     public class TeamData : ScriptableObject{
         [SerializeField]
-        public bool _foldOut;
-
-        [SerializeField]
         public Vector3 _worldPosition;
 
         [SerializeField]
