@@ -22,14 +22,14 @@ namespace GoldenLion.PhysicsSimulation {
         /// <summary> </summary>
         protected override TeamData DefenseTeamData {
             get {
-                return CurrentAssaultData._attackTeamData;
+                return CurrentAssaultData._defenseTeamData;
             }
         }
 
         /// <summary> </summary>
         protected override TeamData AttackTeamData {
             get {
-                return CurrentAssaultData._defenseTeamData;
+                return CurrentAssaultData._attackTeamData;
             }
         }
 
@@ -76,6 +76,7 @@ namespace GoldenLion.PhysicsSimulation {
             else {
                 InitializeDefaultAttackTeam();
             }
+            _attackTeamRoot.gameObject.AddComponent<AttackCollisionSample>();
 
             if (DefenseTeamData._writeBack) {
                 InitializeDefeneseTeam();
@@ -83,6 +84,7 @@ namespace GoldenLion.PhysicsSimulation {
             else {
                 InitializeDefaultDefenseTeam();
             }
+            _defenseTeamRoot.gameObject.AddComponent<DefenseCollisionSample>();
         }
 
         /// <summary>

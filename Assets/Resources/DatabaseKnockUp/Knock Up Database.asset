@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: Knock Up Database
   m_EditorClassIdentifier: 
   _databases:
-  - {fileID: 11400000, guid: 27e41a9659b2c0b47ba8f66b28ca7ddb, type: 2}
-  - {fileID: 11400000, guid: 75f246151a52d0349adc81ba23348939, type: 2}
-  - {fileID: 11400000, guid: 86199c06bad75e3459e975c1036c360e, type: 2}
+  - {fileID: 11400000, guid: 307f011e4edac294aa904871a03bb9a8, type: 2}

@@ -25,7 +25,7 @@ namespace GoldenLion.PhysicsSimulation {
         [NonSerialized]
         public const string ASSET_PATH = "Assets/Resources/DatabaseKnockUp";
         [NonSerialized]
-        public const string ASSET_NAME = "defaultAssault";
+        public const string ASSET_NAME = "default_knockup";
         #endregion
 
         #region (Fields) Data

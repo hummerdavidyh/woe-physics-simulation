@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e5391785536f44591c40ed95840951, type: 3}
   m_Name: Assault Database
   m_EditorClassIdentifier: 
-  _databases: []
+  _databases:
+  - {fileID: 11400000, guid: dd8b0a8806882354f8ad96c1732bc3cd, type: 2}

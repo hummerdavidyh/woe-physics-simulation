@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99d0c382edc734a41bab29e25d33e3c5, type: 3}
-  m_Name: Assault 2
+  m_Name: KnockUp 0
   m_EditorClassIdentifier: 
-  _teamType: 1
-  _teamData: {fileID: 2922884365275341899}
---- !u!114 &2922884365275341899
+  _defenseTeamData: {fileID: 8701701028430829844}
+  _attackPosition: {x: 0, y: 0, z: 0}
+  _attackRotation: {x: 0, y: 0, z: 0}
+--- !u!114 &8701701028430829844
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26,13 +27,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfef67d0c6ce5148b789ef6d81c67fc, type: 3}
   m_Name: Defense Team
   m_EditorClassIdentifier: 
-  _foldOut: 0
   _worldPosition: {x: 0, y: 0, z: 16}
-  _worldRotation: {x: 0, y: 180, z: 0}
+  _worldRotation: {x: 0, y: 0, z: 0}
   _total: 50
   _row: 5
-  _spanRow: 1
-  _spanColumn: 1
+  _spanRow: 0.5
+  _spanColumn: 0.5
   _colliders:
   - _centre: {x: 0, y: 0.25, z: 0}
     _size: {x: 0.5, y: 0.5, z: 0.5}
@@ -50,13 +50,13 @@ MonoBehaviour:
     _size: {x: 0.5, y: 0.5, z: 0.5}
     _foldOut: 0
   _rigids:
-  - _mass: 15
+  - _mass: 5
     _drag: 0.5
-  - _mass: 15
+  - _mass: 4
     _drag: 0.5
-  - _mass: 15
+  - _mass: 3
     _drag: 0.5
-  - _mass: 15
+  - _mass: 2
     _drag: 0.5
   - _mass: 15
     _drag: 0.5

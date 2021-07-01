@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8003345437933364163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfef67d0c6ce5148b789ef6d81c67fc, type: 3}
+  m_Name: Attack Team
+  m_EditorClassIdentifier: 
+  _worldPosition: {x: 0, y: 0, z: 0}
+  _worldRotation: {x: 0, y: 0, z: 0}
+  _total: 50
+  _row: 5
+  _spanRow: 0.5
+  _spanColumn: 0.5
+  _colliders:
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
+    _foldOut: 0
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
+    _foldOut: 0
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
+    _foldOut: 0
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
+    _foldOut: 0
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
+    _foldOut: 0
+  _rigids:
+  - _mass: 15
+    _drag: 0.5
+  - _mass: 15
+    _drag: 0.5
+  - _mass: 15
+    _drag: 0.5
+  - _mass: 15
+    _drag: 0.5
+  - _mass: 15
+    _drag: 0.5
+  _writeBack: 0
+  _localPositions: []
+  _localRotations: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,12 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd2b06b3c8f9704a87a0e48f4f4b16b, type: 3}
   m_Name: Assault 0
   m_EditorClassIdentifier: 
-  _teamTypes: 0000000001000000
-  _teamDatas:
-  - {fileID: 114356559148994486}
-  - {fileID: 114560551640103764}
-  _foldouts: 0000
---- !u!114 &114356559148994486
+  _attackTeamData: {fileID: -8003345437933364163}
+  _defenseTeamData: {fileID: 5791370453216145671}
+--- !u!114 &5791370453216145671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,251 +72,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdfef67d0c6ce5148b789ef6d81c67fc, type: 3}
-  m_Name: Team 0
+  m_Name: Default Team
   m_EditorClassIdentifier: 
-  _foldOut: 0
-  _worldPosition: {x: 0, y: 0, z: 0}
-  _worldRotation: {x: 0, y: 0, z: 0}
-  _total: 40
-  _row: 5
-  _spanRow: 0.3
-  _spanColumn: 0.3
-  _colliders:
-  - _centre: {x: 0, y: 1, z: 0}
-    _size: {x: 0.3, y: 2, z: 0.5}
-    _foldOut: 0
-  - _centre: {x: 0, y: 1, z: 0}
-    _size: {x: 0.35, y: 2, z: 0.5}
-    _foldOut: 0
-  - _centre: {x: 0, y: 1, z: 0}
-    _size: {x: 0.5, y: 2, z: 0.5}
-    _foldOut: 0
-  - _centre: {x: 0, y: 1, z: 0}
-    _size: {x: 0.6, y: 2, z: 0.5}
-    _foldOut: 0
-  - _centre: {x: 0, y: 1, z: 0}
-    _size: {x: 0.7, y: 2, z: 0.5}
-    _foldOut: 0
-  _rigids:
-  - _mass: 15
-    _drag: 1
-  - _mass: 15
-    _drag: 1
-  - _mass: 15
-    _drag: 1
-  - _mass: 15
-    _drag: 1
-  - _mass: 15
-    _drag: 1
-  _writeBack: 1
-  _localPositions:
-  - {x: -0.787, y: 0, z: 0.19200003}
-  - {x: -0.599, y: 0, z: 0.352}
-  - {x: -0.399, y: 0, z: 0.482}
-  - {x: -0.169, y: 0, z: 0.6}
-  - {x: 0.053000003, y: 0, z: 0.6}
-  - {x: 0.292, y: 0, z: 0.47500002}
-  - {x: 0.561, y: 0, z: 0.38500002}
-  - {x: 0.796, y: 0, z: 0.167}
-  - {x: -0.936, y: 0, z: -0.10799998}
-  - {x: -0.66, y: 0, z: -0.004}
-  - {x: -0.45000005, y: 0, z: 0.182}
-  - {x: -0.213, y: 0, z: 0.3}
-  - {x: 0.053, y: 0, z: 0.3}
-  - {x: 0.312, y: 0, z: 0.175}
-  - {x: 0.586, y: 0, z: 0.08500001}
-  - {x: 0.9, y: 0, z: -0.13300002}
-  - {x: -1.006, y: 0, z: -0.408}
-  - {x: -0.67460686, y: 0, z: -0.24800003}
-  - {x: -0.45000005, y: 0, z: -0.118000016}
-  - {x: -0.213, y: 0, z: 6.7281436e-20}
-  - {x: 0.102, y: 0, z: 8.0962745e-20}
-  - {x: 0.38, y: 0, z: -0.12500001}
-  - {x: 0.666, y: 0, z: -0.215}
-  - {x: 0.97, y: 0, z: -0.43300003}
-  - {x: -1.063, y: 0, z: -0.708}
-  - {x: -0.742, y: 0, z: -0.54800004}
-  - {x: -0.45000005, y: 0, z: -0.41800004}
-  - {x: -0.213, y: 0, z: -0.3}
-  - {x: 0.115, y: 0, z: -0.3}
-  - {x: 0.386, y: 0, z: -0.425}
-  - {x: 0.704, y: 0, z: -0.515}
-  - {x: 1.019, y: 0, z: -0.73300004}
-  - {x: -1.038, y: 0, z: -1.008}
-  - {x: -0.761, y: 0, z: -0.84800005}
-  - {x: -0.493, y: 0, z: -0.718}
-  - {x: -0.213, y: 0, z: -0.6}
-  - {x: 0.134, y: 0, z: -0.6}
-  - {x: 0.423, y: 0, z: -0.725}
-  - {x: 0.729, y: 0, z: -0.81500006}
-  - {x: 1.001, y: 0, z: -1.033}
-  _localRotations:
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
---- !u!114 &114560551640103764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdfef67d0c6ce5148b789ef6d81c67fc, type: 3}
-  m_Name: Team 1
-  m_EditorClassIdentifier: 
-  _foldOut: 0
-  _worldPosition: {x: 0, y: 0, z: 4}
+  _worldPosition: {x: 0, y: 0, z: 6}
   _worldRotation: {x: 0, y: 180, z: 0}
-  _total: 40
+  _total: 50
   _row: 5
-  _spanRow: 0.3
-  _spanColumn: 0.3
+  _spanRow: 0.5
+  _spanColumn: 0.5
   _colliders:
-  - _centre: {x: 0, y: 1, z: 0}
-    _size: {x: 0.2, y: 2, z: 0.5}
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
     _foldOut: 0
-  - _centre: {x: 0, y: 1, z: 0}
-    _size: {x: 0.35, y: 2, z: 0.5}
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
     _foldOut: 0
-  - _centre: {x: 0, y: 1, z: 0}
-    _size: {x: 0.5, y: 2, z: 0.5}
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
     _foldOut: 0
-  - _centre: {x: 0, y: 1, z: 0}
-    _size: {x: 0.6, y: 2, z: 0.5}
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
     _foldOut: 0
-  - _centre: {x: 0, y: 1, z: 0}
-    _size: {x: 0.7, y: 2, z: 0.5}
+  - _centre: {x: 0, y: 0.25, z: 0}
+    _size: {x: 0.5, y: 0.5, z: 0.5}
     _foldOut: 0
   _rigids:
-  - _mass: 20
-    _drag: 1
-  - _mass: 20
-    _drag: 1
-  - _mass: 20
-    _drag: 1
-  - _mass: 20
-    _drag: 1
-  - _mass: 20
-    _drag: 1
-  _writeBack: 1
-  _localPositions:
-  - {x: 1.0500001, y: 0, z: -0.5999999}
-  - {x: 0.75000006, y: 0, z: -0.5999999}
-  - {x: 0.45000005, y: 0, z: -0.5999999}
-  - {x: 0.15000004, y: 0, z: -0.5999999}
-  - {x: -0.14999998, y: 0, z: -0.5999999}
-  - {x: -0.45, y: 0, z: -0.5999999}
-  - {x: -0.75, y: 0, z: -0.5999999}
-  - {x: -1.05, y: 0, z: -0.5999999}
-  - {x: 1.0500001, y: 0, z: -0.29999995}
-  - {x: 0.75000006, y: 0, z: -0.29999995}
-  - {x: 0.45000005, y: 0, z: -0.29999995}
-  - {x: 0.15000004, y: 0, z: -0.29999995}
-  - {x: -0.14999998, y: 0, z: -0.29999995}
-  - {x: -0.45, y: 0, z: -0.29999995}
-  - {x: -0.75, y: 0, z: -0.29999995}
-  - {x: -1.05, y: 0, z: -0.29999995}
-  - {x: 1.0500001, y: 0, z: 0}
-  - {x: 0.75000006, y: 0, z: 0}
-  - {x: 0.45000005, y: 0, z: 0}
-  - {x: 0.15000004, y: 0, z: 0}
-  - {x: -0.14999998, y: 0, z: 0}
-  - {x: -0.45, y: 0, z: 0}
-  - {x: -0.75, y: 0, z: 0}
-  - {x: -1.05, y: 0, z: 0}
-  - {x: 1.0500001, y: 0, z: 0.3000002}
-  - {x: 0.75000006, y: 0, z: 0.3000002}
-  - {x: 0.45000005, y: 0, z: 0.3000002}
-  - {x: 0.15000004, y: 0, z: 0.3000002}
-  - {x: -0.14999998, y: 0, z: 0.3000002}
-  - {x: -0.45, y: 0, z: 0.3000002}
-  - {x: -0.75, y: 0, z: 0.3000002}
-  - {x: -1.05, y: 0, z: 0.3000002}
-  - {x: 1.0500001, y: 0, z: 0.5999999}
-  - {x: 0.75000006, y: 0, z: 0.5999999}
-  - {x: 0.45000005, y: 0, z: 0.5999999}
-  - {x: 0.15000004, y: 0, z: 0.5999999}
-  - {x: -0.14999998, y: 0, z: 0.5999999}
-  - {x: -0.45, y: 0, z: 0.5999999}
-  - {x: -0.75, y: 0, z: 0.5999999}
-  - {x: -1.05, y: 0, z: 0.5999999}
-  _localRotations:
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
-  - {x: -0, y: -0, z: -0, w: 1}
+  - _mass: 15
+    _drag: 0.5
+  - _mass: 15
+    _drag: 0.5
+  - _mass: 15
+    _drag: 0.5
+  - _mass: 15
+    _drag: 0.5
+  - _mass: 15
+    _drag: 0.5
+  _writeBack: 0
+  _localPositions: []
+  _localRotations: []
